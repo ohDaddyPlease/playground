@@ -32,10 +32,12 @@ func main() {
 	log.Printf("bytes seq (marshaled): %+v\n", mmsg)
 
 	var msg bytes.Buffer
-	msg.Write(mmsg)
+	if _, err := msg.Write(mmsg); err != nil {
+		log.Fatal("write to buffer: ", err)
+	}
 	log.Printf("reader: %+v\n", msg)
 
 	if _, err := http.Post("http://localhost:1111", "application/x-protobuf", &msg); err != nil {
-		log.Fatal(err)
+		log.Fatal("request: ", err)
 	}
 }
