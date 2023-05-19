@@ -7,6 +7,7 @@ import (
 
 	email "github.com/ohdaddyplease/playground/protobuf/emailpb"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func main() {
@@ -21,7 +22,8 @@ func main() {
 			Name:    "Andrey",
 			Address: "a@email.com",
 		},
-		Message: "Hello, Andrey!",
+		Message:    "Hello, Andrey!",
+		CretatedAt: timestamppb.Now(),
 	}
 	log.Printf("email struct: %+v\n", e)
 
